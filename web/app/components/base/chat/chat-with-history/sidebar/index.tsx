@@ -144,7 +144,7 @@ const Sidebar = ({ isPanel }: Props) => {
               'flex shrink-0 items-center gap-1.5 px-1',
             )}>
               <div className='system-2xs-medium-uppercase text-text-tertiary'>{t('share.chat.poweredBy')}</div>
-              <span className='system-2xs-medium-uppercase text-text-tertiary'>CSTS</span>
+              <div className='system-2xs-medium-uppercase text-text-tertiary'>ConnexusTravel</div>
             </div>
           )}
         </div>
