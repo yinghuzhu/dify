@@ -10,7 +10,7 @@ import {
   RiLoader2Line,
   RiPlayLargeLine,
 } from '@remixicon/react'
-import DifyLogo from '@/app/components/base/logo/dify-logo'
+
 import Switch from '@/app/components/base/switch'
 import Button from '@/app/components/base/button'
 import Divider from '@/app/components/base/divider'
@@ -24,7 +24,6 @@ import {
 } from '@/service/common'
 import { useAppContext } from '@/context/app-context'
 import cn from '@/utils/classnames'
-import { useGlobalPublicStore } from '@/context/global-public-context'
 
 const ALLOW_FILE_EXTENSIONS = ['svg', 'png']
 
@@ -38,9 +37,7 @@ const CustomWebAppBrand = () => {
     isCurrentWorkspaceManager,
   } = useAppContext()
   const [fileId, setFileId] = useState('')
-  const [imgKey, setImgKey] = useState(Date.now())
   const [uploadProgress, setUploadProgress] = useState(0)
-  const systemFeatures = useGlobalPublicStore(s => s.systemFeatures)
   const isSandbox = enableBilling && plan.type === Plan.sandbox
   const uploading = uploadProgress > 0 && uploadProgress < 100
   const webappLogo = currentWorkspace.custom_config?.replace_webapp_logo || ''
@@ -246,13 +243,7 @@ const CustomWebAppBrand = () => {
                 {!webappBrandRemoved && (
                   <>
                     <div className='system-2xs-medium-uppercase text-text-tertiary'>POWERED BY</div>
-                    {
-                      systemFeatures.branding.enabled && systemFeatures.branding.workspace_logo
-                        ? <img src={systemFeatures.branding.workspace_logo} alt='logo' className='block h-5 w-auto' />
-                        : webappLogo
-                          ? <img src={`${webappLogo}?hash=${imgKey}`} alt='logo' className='block h-5 w-auto' />
-                          : <DifyLogo size='small' />
-                    }
+                    <span className='system-2xs-medium-uppercase text-text-tertiary'>CSTS</span>
                   </>
                 )}
               </div>
@@ -308,13 +299,7 @@ const CustomWebAppBrand = () => {
             {!webappBrandRemoved && (
               <>
                 <div className='system-2xs-medium-uppercase text-text-tertiary'>POWERED BY</div>
-                {
-                  systemFeatures.branding.enabled && systemFeatures.branding.workspace_logo
-                    ? <img src={systemFeatures.branding.workspace_logo} alt='logo' className='block h-5 w-auto' />
-                    : webappLogo
-                      ? <img src={`${webappLogo}?hash=${imgKey}`} alt='logo' className='block h-5 w-auto' />
-                      : <DifyLogo size='small' />
-                }
+                <span className='system-2xs-medium-uppercase text-text-tertiary'>CSTS</span>
               </>
             )}
           </div>

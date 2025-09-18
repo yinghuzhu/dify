@@ -16,10 +16,8 @@ import Loading from '@/app/components/base/loading'
 import LogoHeader from '@/app/components/base/logo/logo-embedded-chat-header'
 import Header from '@/app/components/base/chat/embedded-chatbot/header'
 import ChatWrapper from '@/app/components/base/chat/embedded-chatbot/chat-wrapper'
-import DifyLogo from '@/app/components/base/logo/dify-logo'
 import cn from '@/utils/classnames'
 import useDocumentTitle from '@/hooks/use-document-title'
-import { useGlobalPublicStore } from '@/context/global-public-context'
 
 const Chatbot = () => {
   const {
@@ -32,7 +30,6 @@ const Chatbot = () => {
     themeBuilder,
   } = useEmbeddedChatbotContext()
   const { t } = useTranslation()
-  const systemFeatures = useGlobalPublicStore(s => s.systemFeatures)
 
   const customConfig = appData?.custom_config
   const site = appData?.site
@@ -79,13 +76,7 @@ const Chatbot = () => {
               'flex shrink-0 items-center gap-1.5 px-2',
             )}>
               <div className='system-2xs-medium-uppercase text-text-tertiary'>{t('share.chat.poweredBy')}</div>
-              {
-                systemFeatures.branding.enabled && systemFeatures.branding.workspace_logo
-                  ? <img src={systemFeatures.branding.workspace_logo} alt='logo' className='block h-5 w-auto' />
-                  : appData?.custom_config?.replace_webapp_logo
-                    ? <img src={`${appData?.custom_config?.replace_webapp_logo}`} alt='logo' className='block h-5 w-auto' />
-                    : <DifyLogo size='small' />
-              }
+              <span className='system-2xs-medium-uppercase text-text-tertiary'>CSTS</span>
             </div>
           )}
         </div>
