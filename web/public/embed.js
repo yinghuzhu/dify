@@ -14,6 +14,53 @@
   const config = window[configKey];
   let isExpanded = false;
 
+  // SVG icons for open and close states
+  const svgIcons = `<svg version="1.1" id="openIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FF5715;}
+</style>
+<path class="st0" d="M12,24c-1,0-1.9-0.1-2.9-0.4c-1.6-0.4-3-1.1-4.3-2c-1.2-0.9-2.3-2.1-3.1-3.4s-1.3-2.8-1.6-4.3
+	c-0.3-1.6-0.2-3.2,0.2-4.8C0.7,7.8,1.2,6.6,2,5.4c0.7-1.1,1.6-2.1,2.7-2.9c1-0.8,2.2-1.4,3.4-1.9C9.3,0.2,10.7,0,12,0
+	c1,0,1.9,0.1,2.9,0.4c1.6,0.4,3,1.1,4.3,2c1.2,0.9,2.3,2.1,3.1,3.4c0.8,1.3,1.3,2.8,1.6,4.3c0.3,1.6,0.2,3.2-0.2,4.8
+	c-0.3,1.3-0.9,2.6-1.6,3.7s-1.6,2.1-2.7,2.9c-1,0.8-2.2,1.4-3.4,1.9C14.6,23.8,13.3,24,12,24L12,24z M12,0.6
+	c-5.3,0-9.8,3.6-11.1,8.7c-1.5,6.1,2.2,12.4,8.4,13.9c0.9,0.2,1.8,0.3,2.7,0.3c5.3,0,9.8-3.6,11.1-8.7c0.7-3,0.3-6-1.3-8.7
+	c-1.6-2.6-4.1-4.5-7.1-5.2C13.8,0.7,12.9,0.6,12,0.6L12,0.6z"/>
+<path class="st0" d="M14.4,0.8l0.5,0.1l-3.7,15l-0.5-0.1L14.4,0.8z"/>
+<path class="st0" d="M11.4,12l0.4,0.4L3.6,20l-0.4-0.4L11.4,12z"/>
+<path class="st0" d="M8.1,11.3l15.6,0.8v0.5L8.1,11.9V11.3z"/>
+<path class="st0" d="M11.2,8.7L15.7,23l-0.5,0.2L10.7,8.8L11.2,8.7z"/>
+<path class="st0" d="M2,6.9l13.7,6.3l-0.2,0.5L1.8,7.4L2,6.9z"/>
+<path class="st0" d="M5.4,8.8L4.7,3.1H4.4C2.6,4.6,1.2,6.7,0.6,9.2c-0.2,0.6-0.3,1.3-0.3,1.9L5.4,8.8z"/>
+<path class="st0" d="M6.5,17.1L1,16c1.1,2.9,3.3,5.4,6.2,6.7L6.5,17.1z"/>
+<path class="st0" d="M10.7,23.5l0.1,0.2c3.2,0.3,6.3-0.7,8.7-2.6l-5.2-2L10.7,23.5z"/>
+<path class="st0" d="M19.5,12.4l3,4.8c0.4-0.8,0.7-1.6,0.9-2.4c0.6-2.3,0.4-4.5-0.3-6.6L19.5,12.4z"/>
+<path class="st0" d="M10,0.5l3.7,4.3L19,2.6c-1.2-0.9-2.6-1.6-4.2-2S11.5,0.2,10,0.5L10,0.5z"/>
+<path class="st0" d="M13.7,16.9l3-4.9L13,7.7L7.7,9.8l0.4,5.7L13.7,16.9z"/>
+</svg>
+    <svg version="1.1" id="closeIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+<path d="M12,24c-1,0-1.9-0.1-2.9-0.4c-1.6-0.4-3-1.1-4.3-2c-1.2-0.9-2.3-2.1-3.1-3.4s-1.3-2.8-1.6-4.3c-0.3-1.6-0.2-3.2,0.2-4.8
+	C0.7,7.8,1.2,6.6,2,5.4c0.7-1.1,1.6-2.1,2.7-2.9c1-0.8,2.2-1.4,3.4-1.9C9.3,0.2,10.7,0,12,0c1,0,1.9,0.1,2.9,0.4
+	c1.6,0.4,3,1.1,4.3,2c1.2,0.9,2.3,2.1,3.1,3.4c0.8,1.3,1.3,2.8,1.6,4.3c0.3,1.6,0.2,3.2-0.2,4.8c-0.3,1.3-0.9,2.6-1.6,3.7
+	s-1.6,2.1-2.7,2.9c-1,0.8-2.2,1.4-3.4,1.9C14.6,23.8,13.3,24,12,24L12,24z M12,0.6c-5.3,0-9.8,3.6-11.1,8.7
+	c-1.5,6.1,2.2,12.4,8.4,13.9c0.9,0.2,1.8,0.3,2.7,0.3c5.3,0,9.8-3.6,11.1-8.7c0.7-3,0.3-6-1.3-8.7c-1.6-2.6-4.1-4.5-7.1-5.2
+	C13.8,0.7,12.9,0.6,12,0.6L12,0.6z"/>
+<path d="M14.4,0.8l0.5,0.1l-3.7,15l-0.5-0.1L14.4,0.8z"/>
+<path d="M11.4,12l0.4,0.4L3.6,20l-0.4-0.4L11.4,12z"/>
+<path d="M8.1,11.3l15.6,0.8v0.5L8.1,11.9V11.3z"/>
+<path d="M11.2,8.7L15.7,23l-0.5,0.2L10.7,8.8L11.2,8.7z"/>
+<path d="M2,6.9l13.7,6.3l-0.2,0.5L1.8,7.4L2,6.9z"/>
+<path d="M5.4,8.8L4.7,3.1H4.4C2.6,4.6,1.2,6.7,0.6,9.2c-0.2,0.6-0.3,1.3-0.3,1.9L5.4,8.8z"/>
+<path d="M6.5,17.1L1,16c1.1,2.9,3.3,5.4,6.2,6.7L6.5,17.1z"/>
+<path d="M10.7,23.5l0.1,0.2c3.2,0.3,6.3-0.7,8.7-2.6l-5.2-2L10.7,23.5z"/>
+<path d="M19.5,12.4l3,4.8c0.4-0.8,0.7-1.6,0.9-2.4c0.6-2.3,0.4-4.5-0.3-6.6L19.5,12.4z"/>
+<path d="M10,0.5l3.7,4.3L19,2.6c-1.2-0.9-2.6-1.6-4.2-2S11.5,0.2,10,0.5L10,0.5z"/>
+<path d="M13.7,16.9l3-4.9L13,7.7L7.7,9.8l0.4,5.7L13.7,16.9z"/>
+</svg>
+    `;
+
+
   const originalIframeStyleText = `
     position: absolute;
     display: flex;
@@ -70,14 +117,6 @@
       console.error(`${configKey} is empty or token is not provided`);
       return;
     }
-
-    // Custom icons for open and close states (embedded Base64 SVG)
-    const openIconBase64 = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJDMiAxMy41NCAyLjM2IDE1LjAxIDMgMTYuMzFWMjJMOC42OSAxOUM5Ljk5IDE5LjY0IDExLjQ2IDIwIDEzIDIwSDEyQzE3LjUyIDIwIDIyIDE1LjUyIDIyIDEwQzIyIDQuNDggMTcuNTIgMCAxMiAwVjJaIiBmaWxsPSIjM0I4MkY2Ii8+CiAgPGNpcmNsZSBjeD0iOCIgY3k9IjEyIiByPSIxLjUiIGZpbGw9IndoaXRlIi8+CiAgPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxjaXJjbGUgY3g9IjE2IiBjeT0iMTIiIHI9IjEuNSIgZmlsbD0id2hpdGUiLz4KPC9zdmc+';
-    const closeIconBase64 = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNMTggNkw2IDE4TTYgNkwxOCAxOCIgc3Ryb2tlPSIjNkI3MjgwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4=';
-    
-    const svgIcons = `<img id="openIcon" src="${openIconBase64}" width="24" height="24" style="display:block;" alt="Open Chat" />
-      <img id="closeIcon" src="${closeIconBase64}" width="24" height="24" style="display:none;" alt="Close Chat" />
-      `;
 
     async function compressAndEncodeBase64(input) {
       const uint8Array = new TextEncoder().encode(input);
