@@ -35,7 +35,7 @@
 <path d="M10,0.5l3.7,4.3L19,2.6c-1.2-0.9-2.6-1.6-4.2-2S11.5,0.2,10,0.5L10,0.5z"/>
 <path d="M13.7,16.9l3-4.9L13,7.7L7.7,9.8l0.4,5.7L13.7,16.9z"/>
 </svg>
-    <svg version="1.1" id="closeIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<svg version="1.1" id="closeIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#FF5715;}
