@@ -36,7 +36,7 @@ const DifyLogo: FC<DifyLogoProps> = ({
     <img
       src={`${basePath}${logoPathMap[themedStyle]}`}
       className={classNames('block object-contain', logoSizeMap[size], className)}
-      alt='CSTS logo'
+      alt='connexus travel logo'
     />
   )
 }

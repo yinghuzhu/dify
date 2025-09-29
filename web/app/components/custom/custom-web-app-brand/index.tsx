@@ -243,7 +243,7 @@ const CustomWebAppBrand = () => {
                 {!webappBrandRemoved && (
                   <>
                     <div className='system-2xs-medium-uppercase text-text-tertiary'>POWERED BY</div>
-                    <div className='system-2xs-medium-uppercase text-text-tertiary'>ConnexusTravel</div>
+                    <div className='system-2xs-medium-uppercase text-text-tertiary'>connexus travel</div>
                   </>
                 )}
               </div>
@@ -299,7 +299,7 @@ const CustomWebAppBrand = () => {
             {!webappBrandRemoved && (
               <>
                 <div className='system-2xs-medium-uppercase text-text-tertiary'>POWERED BY</div>
-                <div className='system-2xs-medium-uppercase text-text-tertiary'>ConnexusTravel</div>
+                <div className='system-2xs-medium-uppercase text-text-tertiary'>connexus travel</div>
               </>
             )}
           </div>
