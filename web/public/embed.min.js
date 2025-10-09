@@ -38,7 +38,7 @@
     justify-content: space-between;
     top: unset;
     right: var(--${buttonId}-right, 1rem); /* Align with dify-chatbot-bubble-button. */
-    bottom: calc(var(--${buttonId}-bottom, 1rem) + var(--${buttonId}-height, 48px) + 1rem); /* Position above the button */
+    bottom: calc(var(--${buttonId}-bottom, 1rem) + var(--${buttonId}-height, 48px) + 0.5rem); /* Position above the button */
     left: unset;
     width: 24rem;
     max-width: calc(100vw - 2rem);
@@ -61,7 +61,7 @@
     justify-content: space-between;
     top: unset;
     right: var(--${buttonId}-right, 1rem); /* Align with dify-chatbot-bubble-button. */
-    bottom: calc(var(--${buttonId}-bottom, 1rem) + var(--${buttonId}-height, 48px) + 1rem); /* Position above the button */
+    bottom: calc(var(--${buttonId}-bottom, 1rem) + var(--${buttonId}-height, 48px) + 0.5rem); /* Position above the button */
     left: unset;
     min-width: 24rem;
     width: 48%;
@@ -176,7 +176,7 @@
       if (targetIframe && targetButton) {
         // Always position the chat window above the button
         // Calculate the bottom position to place iframe above the button
-        const buttonBottom = `calc(var(--${buttonId}-bottom, 1rem) + var(--${buttonId}-height, 48px) + 1rem)`;
+        const buttonBottom = `calc(var(--${buttonId}-bottom, 1rem) + var(--${buttonId}-height, 48px) + 0.5rem)`;
         targetIframe.style.bottom = buttonBottom;
         targetIframe.style.top = 'unset';
 
