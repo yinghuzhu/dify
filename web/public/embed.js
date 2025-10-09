@@ -32,13 +32,13 @@
 
 
   const originalIframeStyleText = `
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     top: unset;
     right: var(--${buttonId}-right, 1rem); /* Align with dify-chatbot-bubble-button. */
-    bottom: var(--${buttonId}-bottom, 1rem); /* Align with dify-chatbot-bubble-button. */
+    bottom: calc(var(--${buttonId}-bottom, 1rem) + var(--${buttonId}-height, 48px) + 1rem); /* Position above the button */
     left: unset;
     width: 24rem;
     max-width: calc(100vw - 2rem);
@@ -55,13 +55,13 @@
   `
 
   const expandedIframeStyleText = `
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     top: unset;
     right: var(--${buttonId}-right, 1rem); /* Align with dify-chatbot-bubble-button. */
-    bottom: var(--${buttonId}-bottom, 1rem); /* Align with dify-chatbot-bubble-button. */
+    bottom: calc(var(--${buttonId}-bottom, 1rem) + var(--${buttonId}-height, 48px) + 1rem); /* Position above the button */
     left: unset;
     min-width: 24rem;
     width: 48%;
@@ -174,30 +174,15 @@
       const targetIframe = document.getElementById(iframeId);
       const targetButton = document.getElementById(buttonId);
       if (targetIframe && targetButton) {
-        const buttonRect = targetButton.getBoundingClientRect();
-        // We don't necessarily need iframeRect anymore with the center logic
+        // Always position the chat window above the button
+        // Calculate the bottom position to place iframe above the button
+        const buttonBottom = `calc(var(--${buttonId}-bottom, 1rem) + var(--${buttonId}-height, 48px) + 1rem)`;
+        targetIframe.style.bottom = buttonBottom;
+        targetIframe.style.top = 'unset';
 
-        const viewportCenterY = window.innerHeight / 2;
-        const buttonCenterY = buttonRect.top + buttonRect.height / 2;
-
-        if (buttonCenterY < viewportCenterY) {
-          targetIframe.style.top = `var(--${buttonId}-bottom, 1rem)`;
-          targetIframe.style.bottom = 'unset';
-        } else {
-          targetIframe.style.bottom = `var(--${buttonId}-bottom, 1rem)`;
-          targetIframe.style.top = 'unset';
-        }
-
-        const viewportCenterX = window.innerWidth / 2;
-        const buttonCenterX = buttonRect.left + buttonRect.width / 2;
-
-        if (buttonCenterX < viewportCenterX) {
-          targetIframe.style.left = `var(--${buttonId}-right, 1rem)`;
-          targetIframe.style.right = 'unset';
-        } else {
-          targetIframe.style.right = `var(--${buttonId}-right, 1rem)`;
-          targetIframe.style.left = 'unset';
-        }
+        // Align horizontally with the button
+        targetIframe.style.right = `var(--${buttonId}-right, 1rem)`;
+        targetIframe.style.left = 'unset';
       }
     }
 
@@ -277,7 +262,7 @@
           width: var(--${containerDiv.id}-width, 48px);
           height: var(--${containerDiv.id}-height, 48px);
           border-radius: var(--${containerDiv.id}-border-radius, 25px);
-          background-color: #000000;
+          background-color: rgb(0, 0, 0) !important;
           box-shadow: var(--${containerDiv.id}-box-shadow, rgba(0, 0, 0, 0.2) 0px 4px 8px 0px);
           cursor: pointer;
           z-index: 2147483647;
