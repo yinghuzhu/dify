@@ -17,15 +17,15 @@
   // Function to create image icons using external files
   function createImageIcons() {
     const baseUrl = config.baseUrl || `https://${config.isDev ? "dev." : ""}udify.app`;
-    
+
     return `
       <img id="openIcon" src="${baseUrl}/logo/openIcon.svg" alt="Open Chat" 
-           style="width: 44px; height: 44px; display: block;" 
+           style="width: 48px; height: 48px; display: block;" 
            onerror="this.style.display='none'; document.getElementById('fallbackOpenIcon').style.display='block';" />
       <img id="closeIcon" src="${baseUrl}/logo/closeIcon.svg" alt="Close Chat" 
-           style="width: 44px; height: 44px; display: none;" 
+           style="width: 48px; height: 48px; display: none;" 
            onerror="this.style.display='none'; document.getElementById('fallbackCloseIcon').style.display='block';" />
-      <div id="fallbackOpenIcon" style="color: white; font-size: 44px; font-weight: bold; display: none;">💬</div>
+      <div id="fallbackOpenIcon" style="color: white; font-size: 40px; font-weight: bold; display: none;">💬</div>
       <div id="fallbackCloseIcon" style="color: white; font-size: 40px; font-weight: bold; display: none;">✕</div>
     `;
   }
@@ -277,7 +277,7 @@
           width: var(--${containerDiv.id}-width, 48px);
           height: var(--${containerDiv.id}-height, 48px);
           border-radius: var(--${containerDiv.id}-border-radius, 25px);
-          background-color: var(--${containerDiv.id}-bg-color, #155EEF);
+          background-color: var(--${containerDiv.id}-bg-color, #000000);
           box-shadow: var(--${containerDiv.id}-box-shadow, rgba(0, 0, 0, 0.2) 0px 4px 8px 0px);
           cursor: pointer;
           z-index: 2147483647;
@@ -288,7 +288,7 @@
       const displayDiv = document.createElement("div");
       displayDiv.style.cssText =
         "position: relative; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; z-index: 2147483647;";
-      
+
       // Load image icons
       const imageIcons = createImageIcons();
       displayDiv.innerHTML = imageIcons;
@@ -446,7 +446,7 @@
         fallbackOpenIcon.style.display = "block";
         if (openIcon) openIcon.style.display = "none";
       }
-      
+
       // Hide close icon (image and fallback)
       const closeIcon = document.getElementById("closeIcon");
       const fallbackCloseIcon = document.getElementById("fallbackCloseIcon");
@@ -458,7 +458,7 @@
       const fallbackOpenIcon = document.getElementById("fallbackOpenIcon");
       if (openIcon) openIcon.style.display = "none";
       if (fallbackOpenIcon) fallbackOpenIcon.style.display = "none";
-      
+
       // Show close icon (image or fallback)
       const closeIcon = document.getElementById("closeIcon");
       const fallbackCloseIcon = document.getElementById("fallbackCloseIcon");
